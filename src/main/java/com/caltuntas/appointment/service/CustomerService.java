@@ -1,0 +1,84 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.caltuntas.appointment.service;
+
+import com.caltuntas.appointment.dto.CreateCustomerRequest;
+import com.caltuntas.appointment.dto.UpdateCustomerRequest;
+import com.caltuntas.appointment.model.Customer;
+import com.caltuntas.appointment.repository.CustomerRepository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import static net.logstash.logback.argument.StructuredArguments.kv;
+
+/**
+ *
+ * @author emehalt
+ */
+@Service
+public class CustomerService {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    
+    @Autowired
+    private CustomerRepository repository;
+    public Customer getById(String id){
+        Optional<Customer> customer= repository.findById(id); 
+        if(customer.isPresent())
+            return customer.get();
+        return null;
+    }
+
+    public Customer createCustomer(CreateCustomerRequest request) {
+        Customer newCustomer = new Customer();
+        newCustomer.setFirstName(request.getFirstName());
+        newCustomer.setLastName(request.getLastName());
+        newCustomer.setNationalId(request.getNationalId());
+        logger.info("Created a new customer", kv("customer", newCustomer));        
+        return repository.save(newCustomer);        
+    }
+
+    public Customer updateCustomer(UpdateCustomerRequest request) {
+        Optional<Customer> customer =repository.findById(request.getId());
+        if(!customer.isPresent()){
+            return null;
+        }
+        
+        Customer existingCustomer = new Customer();
+        existingCustomer.setId(request.getId());
+        existingCustomer.setFirstName(request.getFirstName());
+        existingCustomer.setLastName(request.getLastName());
+        existingCustomer.setNationalId(request.getNationalId());        
+        logger.info("Updated customer",kv("customer", customer), kv("updatedCustomer", existingCustomer));        
+        return repository.save(existingCustomer);        
+    }
+
+    public List<Customer> getAll(String filter) {
+        Map<String,String> filters = parseFilter(filter);
+        Customer c = new Customer();
+        c.setNationalId(filters.get("nationalId"));        
+        c.setFirstName(filters.get("firstName"));        
+        c.setLastName(filters.get("lastName"));        
+        return repository.findAll(Example.of(c));        
+    }
+    
+    private Map<String,String> parseFilter(String filter){
+        String[] parts = filter.split("&");
+        Map<String,String> filters = new HashMap<>();
+        for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            String[] keyValue = part.split("=");
+            filters.put(keyValue[0], keyValue[1]);
+        }
+        return filters;
+    }
+}
