@@ -1,7 +1,7 @@
 const config = {
   development: {
     database: {
-      server: process.env.DATABASE_SERVER || 'localhost:27017',
+      server: process.env.DATABASE_SERVER || 'mongodb+srv://admin:Mnabcdef1!@cluster0-9cus0.mongodb.net/test?retryWrites=true&w=majority',
       db: process.env.DATABASE || 'appointment',
       postfix: process.env.DATABASE_POSTFIX || '?authSource=admin',
       options: {
@@ -23,7 +23,7 @@ const config = {
     cors: {
       whitelist: [
         'http://localhost:4200',
-        'http://mcaqnap253a.myqnapcloud.com:4200',
+        'https://appointment-ui.herokuapp.com',
         '*',
       ],
     },

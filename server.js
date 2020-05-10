@@ -42,9 +42,9 @@ app.use('/api/users', usersRoute);
 app.use('/api/appointments', appointmentsRoute);
 
 // Connect Database
+const url = 'mongodb+srv://admin:Mnabcdef1!@cluster0-9cus0.mongodb.net/test?retryWrites=true&w=majority'
 mongoose.connect(
-  config.database.url,
-  config.database.options,
+  url,
   (err) => {
     if (err) {
       logger.error(`Error! ${err}`);
