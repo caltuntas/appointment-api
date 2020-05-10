@@ -1,11 +1,10 @@
 const swaggerDefinition = {
   info: {
-    title: 'Sechard Licensing API',
+    title: 'Appointment API',
     version: '1.0.0',
-    description: 'Sechard Licensing API',
+    description: 'Appointment API',
   },
   basePath: '/',
-  servers: ['http://localhost:8000/api'],
   securityDefinitions: {
     JWT: {
       type: 'apiKey',

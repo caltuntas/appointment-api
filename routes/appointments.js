@@ -19,8 +19,6 @@ const Appointment = require('../models/appointment');
  *    responses:
  *      "200":
  *        description: OK
- *        content:
- *          application/json
  */
 router.get('/', checkAuth, (req, res) => {
   Appointment.find({}, (err, appointments) => {
@@ -48,8 +46,6 @@ router.get('/', checkAuth, (req, res) => {
  *    responses:
  *      "200":
  *        description: Appointment created
- *        content:
- *          application/json
  */
 router.post('/create', checkAuth, (req, res, next) => {
   console.log(req.body);
@@ -74,11 +70,10 @@ router.post('/create', checkAuth, (req, res, next) => {
  *      - name: appointmentId
  *        in: path
  *        required: true
+ *        type: string
  *    responses:
  *      "200":
  *        description: Appointment deleted
- *        content:
- *          application/json
  */
 router.delete('/:id', checkAuth, (req, res, next) => {
   Appointment.deleteOne({ _id: req.params.id }, (err, deletedData) => {
@@ -100,6 +95,7 @@ router.delete('/:id', checkAuth, (req, res, next) => {
  *      - name: appointmentId
  *        in: path
  *        required: true
+ *        type: string
  *      - name: Appointment
  *        in: body
  *        required: true
@@ -108,8 +104,6 @@ router.delete('/:id', checkAuth, (req, res, next) => {
  *    responses:
  *      "200":
  *        description: Appointment updated
- *        content:
- *          application/json
  */
 router.put('/:id/edit', checkAuth, (req, res, next) => {
   Appointment.updateOne(

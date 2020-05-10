@@ -23,8 +23,6 @@ const config = require('../config');
  *    responses:
  *      "200":
  *        description: User endpoint
- *        content:
- *          application/json
  */
 router.get('/', checkAuth, (req, res) => {
   res.send({ name: 'users route get' });
@@ -46,8 +44,6 @@ router.get('/', checkAuth, (req, res) => {
  *    responses:
  *      "200":
  *        description: User created
- *        content:
- *          application/json
  */
 router.post('/register', (req, res) => {
   const userData = req.body;
@@ -84,8 +80,6 @@ router.post('/register', (req, res) => {
  *    responses:
  *      "200":
  *        description: Logged in successfully
- *        content:
- *          application/json
  */
 router.post('/login', (req, res) => {
   const userData = req.body;

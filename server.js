@@ -62,6 +62,11 @@ app.use((err, req, res, next) => {
   next();
 });
 
+app.get('/api-docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
 app.listen(config.port, () => {
   logger.info(`Server running on localhost: ${config.port}`);
 });

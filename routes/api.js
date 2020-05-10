@@ -17,13 +17,11 @@ const router = require('express').Router();
  *    responses:
  *      "200":
  *        description: API Test
- *        content:
- *          application/json
  */
 router.get('/', (req, res) => {
   res
     .status(200)
-    .send({ result: 'Sechard Licensing API is working' });
+    .send({ result: 'Appointment API is working' });
 });
 
 module.exports = router;
