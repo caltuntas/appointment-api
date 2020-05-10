@@ -1,5 +1,5 @@
 {
-  "name": "license-api",
+  "name": "appointment-api",
   "version": "1.0.0",
   "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
   "main": "index.js",

@@ -67,6 +67,6 @@ app.get('/api-docs.json', (req, res) => {
   res.send(swaggerSpec);
 });
 
-app.listen(config.port, () => {
+app.listen(process.env.PORT || 8000, () => {
   logger.info(`Server running on localhost: ${config.port}`);
 });
