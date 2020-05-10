@@ -18,7 +18,7 @@ const config = {
       secret: 'E9DF14D66A34FE6DAF9EB65E834E7',
       saltRounds: 10,
     },
-    port: process.env.APP_PORT || 8000,
+    port: process.env.PORT || 8000,
     autoMigration: process.env.MIGRATE || false,
     cors: {
       whitelist: [
