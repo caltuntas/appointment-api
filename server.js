@@ -70,3 +70,4 @@ app.get('/api-docs.json', (req, res) => {
 app.listen(process.env.PORT || 8000, () => {
   logger.info(`Server running on localhost: ${config.port}`);
 });
+
