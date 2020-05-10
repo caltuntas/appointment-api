@@ -7,8 +7,7 @@ const swaggerUI = require('swagger-ui-express');
 const swaggerOptions = require('./config/swaggerDef');
 const api = require('./routes/api');
 const usersRoute = require('./routes/users');
-const companiesRoute = require('./routes/companies');
-const licensesRouter = require('./routes/licenses');
+const appointmentsRoute = require('./routes/appointments');
 const logger = require('./helpers/logger');
 const config = require('./config');
 
@@ -40,8 +39,7 @@ app.use(cors(corsOptions));
 // routes
 app.use('/api', api);
 app.use('/api/users', usersRoute);
-app.use('/api/companies', companiesRoute);
-app.use('/api/licenses', licensesRouter);
+app.use('/api/appointments', appointmentsRoute);
 
 // Connect Database
 mongoose.connect(
