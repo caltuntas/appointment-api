@@ -16,25 +16,30 @@ const { Schema } = mongoose;
  *          type: string
  *        password:
  *          type: string
- *
- *    UserRegister:
- *      allOf:
- *       - $ref: '#/definitions/UserLogin'
- *       - required:
- *          - fullName
- *          - email
- *       - properties:
- *          fullName:
- *            type: string
- *          email:
- *            type: string
+ * 
+ *    CreateUser:
+ *      type: object
+ *      required:
+ *        - fullName
+ *        - username
+ *        - password
+ *      properties:
+ *        fullName:
+ *          type: string
+ *        username:
+ *          type: string
+ *        password:
+ *          type: string
+ *        role:
+ *          type: string
  */
 const userSchema = new Schema({
+  fullName: { type: String, required: true },
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
+  role: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   gender: String,
-  fullName: { type: String, required: true },
   mobileNumber: String,
 });
 

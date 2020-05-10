@@ -40,13 +40,13 @@ router.get('/', checkAuth, (req, res) => {
  * /api/users:
  *  post:
  *    tags: [Users]
- *    description: Register User
+ *    description: Create User
  *    parameters:
- *      - name: 'UserRegister'
+ *      - name: 'CreateUser'
  *        in: body
  *        required: true
  *        schema:
- *          $ref: '#/definitions/UserRegister'
+ *          $ref: '#/definitions/CreateUser'
  *    responses:
  *      "200":
  *        description: User created
