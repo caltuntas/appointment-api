@@ -33,7 +33,7 @@ router.get('/', checkAuth, (req, res) => {
 /**
  * @swagger
  *
- * /api/appointments/create:
+ * /api/appointments:
  *  post:
  *    tags: [Appointments]
  *    description: Create Appointment
@@ -47,7 +47,7 @@ router.get('/', checkAuth, (req, res) => {
  *      "200":
  *        description: Appointment created
  */
-router.post('/create', checkAuth, (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
   console.log(req.body);
   const appointment = new Appointment(req.body);
   appointment.save((err, createdAppointment) => {
@@ -87,15 +87,11 @@ router.delete('/:id', checkAuth, (req, res, next) => {
 /**
  * @swagger
  *
- * /api/appointments/{appointmentId}/edit:
+ * /api/appointments:
  *  put:
  *    tags: [Appointments]
  *    description: Update Appointment
  *    parameters:
- *      - name: appointmentId
- *        in: path
- *        required: true
- *        type: string
  *      - name: Appointment
  *        in: body
  *        required: true
@@ -105,9 +101,9 @@ router.delete('/:id', checkAuth, (req, res, next) => {
  *      "200":
  *        description: Appointment updated
  */
-router.put('/:id/edit', checkAuth, (req, res, next) => {
+router.put('/', checkAuth, (req, res, next) => {
   Appointment.updateOne(
-    { _id: req.params.id },
+    { _id: req.body.id },
     req.body,
     (err, deletedData) => {
       if (err) next(err);

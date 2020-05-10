@@ -25,13 +25,19 @@ const config = require('../config');
  *        description: User endpoint
  */
 router.get('/', checkAuth, (req, res) => {
-  res.send({ name: 'users route get' });
+  User.find({}, (err, users) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(users);
+    }
+  });
 });
 
 /**
  * @swagger
  *
- * /api/users/register:
+ * /api/users:
  *  post:
  *    tags: [Users]
  *    description: Register User
@@ -45,7 +51,7 @@ router.get('/', checkAuth, (req, res) => {
  *      "200":
  *        description: User created
  */
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
   const userData = req.body;
   bcyrpt.hash(
     userData.password,
