@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -23,6 +23,8 @@ const { Schema } = mongoose;
  *          type: string
  *        description:
  *          type: string
+ *        operator:
+ *          type: string
  */
 const appointmentSchema = new Schema({
   name: { type: String, required: true },
@@ -31,10 +33,14 @@ const appointmentSchema = new Schema({
   startTime: { type: String },
   endTime: { type: String },
   description: { type: String },
+  operator: { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User" 
+  },
 });
 
 module.exports = mongoose.model(
-  'appointment',
+  "appointment",
   appointmentSchema,
-  'appointments',
+  "appointments"
 );
