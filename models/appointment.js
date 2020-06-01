@@ -32,6 +32,9 @@ const appointmentSchema = new Schema({
   date: { type: String },
   startTime: { type: String },
   endTime: { type: String },
+  startDate: { type: Date },
+  endDate: { type: Date },
+  createDate: { type: Date },
   description: { type: String },
   operator: { 
     type: mongoose.Schema.Types.ObjectId,
