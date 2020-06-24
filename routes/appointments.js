@@ -130,13 +130,15 @@ router.delete("/:id", checkAuth, (req, res, next) => {
  *      "200":
  *        description: Appointment updated
  */
-router.put("/", checkAuth, (req, res, next) => {
-  Appointment.updateOne({ _id: req.body.id }, req.body, (err, deletedData) => {
-    if (err) next(err);
-    else {
-      res.status(200).send(deletedData);
-    }
-  });
+router.put("/", checkAuth, async (req, res, next) => {
+  try {
+    const appointment = await Appointment.findById(req.body._id);
+    Object.assign(appointment, req.body);
+    const result = await appointment.save();
+    res.status(200).send(result);
+  } catch (error) {
+     next(error);
+  }
 });
 
 module.exports = router;
